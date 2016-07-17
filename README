@@ -1,0 +1,9 @@
+LCS: Longest Common Subsequence
+===============================
+
+Various implementations of the LCS algorithms described by Thomas Guest:
+http://wordaligned.org/articles/longest-common-subsequence
+
+I'm starting with verbatim reimplementations of what Thomas wrote. Then I'll
+(probably?) be refining them for use in an unspecified use case and unspecified
+languages and runtime environments.
