@@ -4,6 +4,25 @@ LCS: Longest Common Subsequence
 Various implementations of the LCS algorithms described by Thomas Guest:
 http://wordaligned.org/articles/longest-common-subsequence
 
-I'm starting with verbatim reimplementations of what Thomas wrote. Then I'll
-(probably?) be refining them for use in an unspecified use case and unspecified
-languages and runtime environments.
+
+The Algorithms
+--------------
+
+There are four algorithms:
+
+- recursive: Easiest to understand but least efficient.
+- memoized: A memoized version of the "recursive" algorithm.
+- grid: Dynamic programming solution.
+- hirschberg: Another algorithm, developed by some dude named Hirschberg.
+
+
+Thomas Guest
+------------
+
+Verbatim implementations of the code in the original blog post.
+
+
+Pandas
+------
+
+I reimplement Guest's algorithms with pandas data structures. This is the cutest version.
