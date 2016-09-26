@@ -1,20 +1,30 @@
-import pure
-from random import choice
+#!/usr/bin/env python2
+# -*- coding: utf-8 -*-
 
-DNA_LENGTH = 1000
+from timeit import timeit
 
-def base():
-    return choice('ACGT')
+NUMBER = 25
 
-dna1 = [base() for _ in range(DNA_LENGTH)]
-dna2 = [base() for _ in range(DNA_LENGTH)]
+stmt = """DNA_LENGTH = 500
+dna1 = [choice('ACGT') for _ in range(DNA_LENGTH)]
+dna2 = [choice('ACGT') for _ in range(DNA_LENGTH)]
+pure.lcs_grid(dna1, dna2)"""
 
-pure.lcs_grid(dna1, dna2)
+result = timeit(
+    stmt=stmt,
+    setup='import pure; from random import choice',
+    number=NUMBER,
+)
 
-# when DNA_LENGTH = 10000
-# CPython 2.7 made it to 14.9G memory in 4:40 before I killed it
-# PyPy 5.0.1 made it to 14.9G memory in 1:50 before I killed it
+print('Running the diff {num} times took {res} seconds.'.format(num=NUMBER, res=result))
 
-# when DNA_LENGTH = 1000
-# CPython 2.7: 2.96s, 2.91s, 2.89s
-# PyPy 5.0.1: 1.2s, 1.09s, 1.08s
+
+# CPython 2.7 for 25 times:
+# - 11.7696919441
+# - 11.7794809341
+# - 11.8586730957
+
+# PyPy 5.0.1 for 25 times:
+# - 5.71276402473
+# - 5.67904400826
+# - 6.1371948719

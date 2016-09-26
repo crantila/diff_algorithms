@@ -1,20 +1,30 @@
-import pure
-from random import choice
+#!/usr/bin/env python2
+# -*- coding: utf-8 -*-
 
-DNA_LENGTH = 10000
+from timeit import timeit
 
-def base():
-    return choice('ACGT')
+NUMBER = 25
 
-dna1 = [base() for _ in range(DNA_LENGTH)]
-dna2 = [base() for _ in range(DNA_LENGTH)]
+stmt = """DNA_LENGTH = 500
+dna1 = [choice('ACGT') for _ in range(DNA_LENGTH)]
+dna2 = [choice('ACGT') for _ in range(DNA_LENGTH)]
+pure.lcs_hirschberg(dna1, dna2)"""
 
-pure.lcs_hirschberg(dna1, dna2)
+result = timeit(
+    stmt=stmt,
+    setup='import pure; from random import choice',
+    number=NUMBER,
+)
 
-# when DNA_LENGTH = 10000
-# CPython 2.7: 68.25s, 69.18s, 68.45s
-# PyPy 5.0.1: 3.75s, 3.73s, 3.79s
+print('Running the diff {num} times took {res} seconds.'.format(num=NUMBER, res=result))
 
-# when DNA_LENGTH = 1000
-# CPython 2.7: 0.75s, 0.78s, 0.79s
-# PyPy 5.0.1: 0.25s, 0.27s, 0.28s
+
+# CPython 2.7 for 25 times:
+# - 4.8526699543
+# - 4.80305504799
+# - 4.98720383644
+
+# PyPy 5.0.1 for 25 times:
+# - 0.699461221695
+# - 0.418462991714
+# - 0.423987865448
